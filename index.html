@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>無人機專業換證(一般)模擬測驗</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <div id="home-screen" class="screen">
+            <h1>無人機專業操作證</h1>
+            <h2 class="mode-title">屆期換證學科測驗 (一般)</h2>
+            <div class="info-box">
+                <p>● 測驗題數：40 題</p>
+                <p>● 測驗時間：60 分鐘</p>
+                <p>● 及格標準：80 分</p>
+            </div>
+            <button class="start-btn" onclick="startQuiz()">開始模擬測驗</button>
+        </div>
+
+        <div id="quiz-screen" class="screen hidden">
+            <div class="quiz-header">
+                <button class="exit-btn" onclick="location.reload()">回首頁</button>
+                <div id="timer">60:00</div>
+                <div id="progress">載入中...</div>
+            </div>
+            <div class="quiz-main">
+                <div class="question-box">
+                    <h2 id="q-text">題目載入中...</h2>
+                    <div id="options-list"></div>
+                    <div class="nav-btns">
+                        <button onclick="moveQ(-1)">上一題</button>
+                        <button id="next-btn" onclick="moveQ(1)">下一題</button>
+                        <button id="submit-btn" class="hidden" onclick="handleSubmit()">交卷結算</button>
+                    </div>
+                </div>
+                <aside class="nav-aside">
+                    <h4>題目導覽</h4>
+                    <div id="num-grid"></div>
+                </aside>
+            </div>
+        </div>
+
+        <div id="result-screen" class="screen hidden">
+            <h2 id="result-title">測驗結束</h2>
+            <div class="result-info">
+                <div class="score-circle">
+                    <span id="final-score">0</span>分
+                </div>
+                <p id="pass-tag"></p>
+            </div>
+            <div id="review-section">
+                <h3>錯題檢視 (正確答案已標記)</h3>
+                <div id="error-log"></div>
+            </div>
+            <button class="retry-btn" onclick="location.reload()">重新測驗</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

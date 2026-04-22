@@ -1,0 +1,32 @@
+:root { --main: #1a73e8; --text: #3c4043; --danger: #d93025; --success: #1e8e3e; }
+body { font-family: "PingFang TC", "Microsoft JhengHei", sans-serif; background: #f1f3f4; color: var(--text); margin: 0; }
+.hidden { display: none !important; }
+#app { max-width: 900px; margin: 40px auto; padding: 10px; }
+.screen { background: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); text-align: center; }
+
+/* 首頁樣式 */
+.mode-title { color: var(--main); margin-bottom: 30px; }
+.info-box { background: #f8f9fa; padding: 20px; border-radius: 8px; display: inline-block; text-align: left; margin-bottom: 30px; line-height: 2; }
+.start-btn { background: var(--main); color: white; border: none; padding: 15px 40px; font-size: 18px; border-radius: 30px; cursor: pointer; font-weight: bold; }
+
+/* 測驗介面 */
+.quiz-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #f1f3f4; padding-bottom: 15px; margin-bottom: 20px; }
+#timer { font-size: 26px; font-weight: bold; color: var(--danger); }
+.quiz-main { display: flex; gap: 30px; text-align: left; }
+.question-box { flex: 3; }
+.nav-aside { flex: 1; border-left: 2px solid #f1f3f4; padding-left: 20px; }
+
+.option-btn { display: block; width: 100%; text-align: left; padding: 16px; margin: 10px 0; border: 1.5px solid #dadce0; border-radius: 8px; background: white; cursor: pointer; font-size: 16px; transition: 0.2s; }
+.option-btn.selected { background: var(--main); color: white; border-color: var(--main); }
+
+#num-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin-top: 10px; }
+.num-btn { padding: 10px 0; border: 1px solid #dadce0; border-radius: 4px; text-align: center; cursor: pointer; font-size: 13px; }
+.num-btn.active { border: 2.5px solid var(--main); font-weight: bold; }
+.num-btn.done { background: #e8f0fe; color: var(--main); }
+
+/* 結果 */
+.score-circle { font-size: 80px; font-weight: bold; margin: 20px 0; color: var(--main); }
+.review-card { border-bottom: 1px solid #eee; padding: 15px 0; text-align: left; }
+.correct { color: var(--success); font-weight: bold; }
+.wrong { color: var(--danger); text-decoration: line-through; }
+.retry-btn { margin-top: 30px; padding: 10px 30px; cursor: pointer; }
