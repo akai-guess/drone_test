@@ -41,20 +41,14 @@ async function startQuiz() {
 }
 
 function parseCSV(text) {
-    const rows = text.split(/\r?\n/).filter(r => r.trim() !== '');
-
+    const rows = text.split('\n').map(r => r.trim()).filter(r => r !== '');
+    // 跳過標題列
     return rows.slice(1).map(row => {
-        const cols = row.match(/("([^"]|"")*"|[^,]*)(?=,|$)/g)
-            .map(c => c
-                .replace(/^"|"$/g, '')   // 去外層引號
-                .replace(/""/g, '"')     // 還原 ""
-                .trim()
-            );
-
+        const cols = row.split(',');
         return {
             q: cols[0],
             options: [cols[1], cols[2], cols[3], cols[4]],
-            a: parseInt(cols[5], 10)
+            a: parseInt(cols[5])
         };
     });
 }
