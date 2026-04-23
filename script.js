@@ -116,8 +116,10 @@ function handleSubmit() {
 function showResult() {
     let score = 0;
     let logHTML = '';
+    
     quizData.forEach((item, i) => {
         if (userAns[i] === item.a) {
+            // 每題得分：100 除以 總題數
             score += (100 / quizData.length);
         } else {
             logHTML += `
@@ -131,9 +133,15 @@ function showResult() {
 
     document.getElementById('quiz-screen').classList.add('hidden');
     document.getElementById('result-screen').classList.remove('hidden');
-    const finalScore = Math.round(score);
+
+    // --- 修改部分：取消 Math.round ---
+    // 使用 toFixed(1) 可以保留一位小數（例如 82.5），若要完全原始不限位數，直接用 score 即可
+    const finalScore = score.toFixed(1); 
+    
     document.getElementById('final-score').innerText = finalScore;
-    const pass = finalScore >= 80;
+    
+    // 判斷邏輯依然維持 80 分及格
+    const pass = score >= 80;
     document.getElementById('pass-tag').innerText = pass ? "及格 (恭喜通過)" : "不及格 (請再加油)";
     document.getElementById('pass-tag').style.color = pass ? "green" : "red";
     document.getElementById('error-log').innerHTML = logHTML || "完美！全對！";
