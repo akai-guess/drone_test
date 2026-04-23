@@ -44,7 +44,7 @@ function parseCSV(text) {
     const rows = text.split('\n').map(r => r.trim()).filter(r => r !== '');
     // 跳過標題列
     return rows.slice(1).map(row => {
-        const cols = row.split(',');
+        const cols = row.split('｜');
         return {
             q: cols[0],
             options: [cols[1], cols[2], cols[3], cols[4]],
