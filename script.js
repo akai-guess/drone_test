@@ -41,10 +41,16 @@ async function startQuiz() {
 }
 
 function parseCSV(text) {
-    const rows = text.split('\n').map(r => r.trim()).filter(r => r !== '');
-    // 跳過標題列
+    // 這個正則表達式會正確處理被雙引號包圍的逗號
+    const regex = /(".*?"|[^",\s]+)(?=\s*,|\s*$)/g;
+    const rows = text.split('\n').filter(r => r.trim() !== '');
+    
     return rows.slice(1).map(row => {
-        const cols = row.split(',');
+        // 使用正則表達式抓取欄位，而不是簡單的 split(',')
+        const cols = row.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g).map(c => 
+            c.replace(/^"|"$/g, '').trim() // 去除兩端的雙引號
+        );
+
         return {
             q: cols[0],
             options: [cols[1], cols[2], cols[3], cols[4]],
@@ -52,7 +58,6 @@ function parseCSV(text) {
         };
     });
 }
-
 function render() {
     const item = quizData[curIdx];
     document.getElementById('q-text').innerText = `${curIdx + 1}. ${item.q}`;
